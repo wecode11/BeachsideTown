@@ -15,6 +15,7 @@ public class GameManager : MonoBehaviour
     public GameObject backgroundMusic;
     public GameObject musicSlider;
     public GameObject[] lightObjects;
+    public GameObject[] characters;
 
     void Start()
     {
@@ -126,6 +127,10 @@ public class GameManager : MonoBehaviour
             RendererExtensions.UpdateGIMaterials(lightObjects[litIdx].GetComponent<Renderer>());
         }
 
+        for (int chrIdx = 0; chrIdx < characters.Length; chrIdx++)
+        {
+            characters[chrIdx].GetComponent<Animator>().SetBool("isDay", !enabled);
+        }
 
         DynamicGI.UpdateEnvironment();
     }
