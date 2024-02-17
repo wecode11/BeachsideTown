@@ -6,6 +6,7 @@ TagManager:
   tags:
   - Light
   - Sun
+  - FireVFX
   layers:
   - Default
   - TransparentFX

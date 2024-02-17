@@ -17,78 +17,41 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        SetDay();
         float volume = backgroundMusic.GetComponent<AudioSource>().volume;
         musicSlider.GetComponent<Slider>().value = volume;
+
+        SetDay();
     }
 
     public void Play()
     {
     }
 
-    private void SetSounds(GameObject[] sounds, bool enable)
-    {
-        for (int sndIdx = 0; sndIdx < sounds.Length; sndIdx++)
-        {
-            if (enable)
-            {
-                sounds[sndIdx].GetComponent<AudioSource>().Play();
-            }
-            else
-            {
-                sounds[sndIdx].GetComponent<AudioSource>().Stop();
-            }
-        }
-    }
-
     public void SetDay()
     {
         RenderSettings.skybox = daySkybox;
 
-        GameObject sun = GameObject.FindGameObjectWithTag("Sun");
-        sun.GetComponent<Light>().enabled = true;
+        SetLights(false);
+
+        GameObject fire = GameObject.FindGameObjectWithTag("FireVFX");
+        fire.GetComponent<ParticleSystem>().Stop();
+        fire.GetComponent<ParticleSystem>().Clear();
 
         SetSounds(nightSounds, false);
         SetSounds(daySounds, true);
-
-        GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
-
-        for (int lightIdx = 0; lightIdx < lights.Length; lightIdx++)
-        {
-            lights[lightIdx].GetComponent<Light>().enabled = false;
-        }
-
-        for (int matIdx = 0; matIdx < lightMaterial.Length; matIdx++)
-        {
-            lightMaterial[matIdx].DisableKeyword("_EMISSION");
-        }
-
-        DynamicGI.UpdateEnvironment();
     }
 
     public void SetNight()
     {
         RenderSettings.skybox = nightSkybox;
 
-        GameObject sun = GameObject.FindGameObjectWithTag("Sun");
-        sun.GetComponent<Light>().enabled = false;
+        SetLights(true);
+
+        GameObject fire = GameObject.FindGameObjectWithTag("FireVFX");
+        fire.GetComponent<ParticleSystem>().Play();
 
         SetSounds(daySounds, false);
         SetSounds(nightSounds, true);
-
-        GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
-
-        for (int lightIdx = 0; lightIdx < lights.Length; lightIdx++)
-        {
-            lights[lightIdx].GetComponent<Light>().enabled = true;
-        }
-
-        for (int matIdx = 0; matIdx < lightMaterial.Length; matIdx++)
-        {
-            lightMaterial[matIdx].EnableKeyword("_EMISSION");
-        }
-
-        DynamicGI.UpdateEnvironment();
     }
 
     public void SelectCamera()
@@ -116,5 +79,48 @@ public class GameManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private void SetSounds(GameObject[] sounds, bool enable)
+    {
+        for (int sndIdx = 0; sndIdx < sounds.Length; sndIdx++)
+        {
+            if (enable)
+            {
+                sounds[sndIdx].GetComponent<AudioSource>().Play();
+            }
+            else
+            {
+                sounds[sndIdx].GetComponent<AudioSource>().Stop();
+            }
+        }
+    }
+
+    private void SetLights(bool enabled)
+    {
+        GameObject sun = GameObject.FindGameObjectWithTag("Sun");
+        sun.GetComponent<Light>().enabled = !enabled;
+
+
+        GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
+
+        for (int lightIdx = 0; lightIdx < lights.Length; lightIdx++)
+        {
+            lights[lightIdx].GetComponent<Light>().enabled = enabled;
+        }
+
+        for (int matIdx = 0; matIdx < lightMaterial.Length; matIdx++)
+        {
+            if (enabled)
+            {
+                lightMaterial[matIdx].EnableKeyword("_EMISSION");
+            }
+            else
+            {
+                lightMaterial[matIdx].DisableKeyword("_EMISSION");
+            }
+        }
+
+        DynamicGI.UpdateEnvironment();
     }
 }
