@@ -10,15 +10,35 @@ public class GameManager : MonoBehaviour
     public Material daySkybox;
     public Material nightSkybox;
     public Material[] lightMaterial;
-    public GameObject fire;
+    public GameObject[] daySounds;
+    public GameObject[] nightSounds;
+    public GameObject backgroundMusic;
+    public GameObject musicSlider;
 
     void Start()
     {
         SetDay();
+        float volume = backgroundMusic.GetComponent<AudioSource>().volume;
+        musicSlider.GetComponent<Slider>().value = volume;
     }
 
     public void Play()
     {
+    }
+
+    private void SetSounds(GameObject[] sounds, bool enable)
+    {
+        for (int sndIdx = 0; sndIdx < sounds.Length; sndIdx++)
+        {
+            if (enable)
+            {
+                sounds[sndIdx].GetComponent<AudioSource>().Play();
+            }
+            else
+            {
+                sounds[sndIdx].GetComponent<AudioSource>().Stop();
+            }
+        }
     }
 
     public void SetDay()
@@ -28,7 +48,8 @@ public class GameManager : MonoBehaviour
         GameObject sun = GameObject.FindGameObjectWithTag("Sun");
         sun.GetComponent<Light>().enabled = true;
 
-        fire.SetActive(false);
+        SetSounds(nightSounds, false);
+        SetSounds(daySounds, true);
 
         GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
 
@@ -52,7 +73,8 @@ public class GameManager : MonoBehaviour
         GameObject sun = GameObject.FindGameObjectWithTag("Sun");
         sun.GetComponent<Light>().enabled = false;
 
-        fire.SetActive(true);
+        SetSounds(daySounds, false);
+        SetSounds(nightSounds, true);
 
         GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
 
@@ -73,6 +95,7 @@ public class GameManager : MonoBehaviour
     {
         for (int camIdx = 0; camIdx < cameras.Length; camIdx++)
         {
+            cameras[camIdx].GetComponent<AudioListener>().enabled = false;
             cameras[camIdx].enabled = false;
         }
 
@@ -81,6 +104,7 @@ public class GameManager : MonoBehaviour
         if (camVal < cameras.Length)
         {
             cameras[camVal].enabled = true;
+            cameras[camVal].GetComponent<AudioListener>().enabled = true;
         }
     }
 
