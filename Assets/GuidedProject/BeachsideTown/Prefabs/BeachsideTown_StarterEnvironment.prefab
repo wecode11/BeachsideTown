@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 2674250209381620759}
   m_Layer: 0
   m_Name: Area Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -40,7 +40,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1157891115822356980}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -131,7 +131,7 @@ GameObject:
   - component: {fileID: 5711160985603477390}
   m_Layer: 0
   m_Name: Area Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -158,7 +158,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3014261765753721904}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -332,7 +332,7 @@ GameObject:
   - component: {fileID: 940251010503281158}
   m_Layer: 0
   m_Name: Flag Spot Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -359,7 +359,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4759268407424914356}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -556,7 +556,7 @@ GameObject:
   - component: {fileID: 8075194043781192274}
   m_Layer: 0
   m_Name: Fire Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -583,7 +583,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6198084841303743376}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 2
   m_Shape: 0
@@ -674,7 +674,7 @@ GameObject:
   - component: {fileID: 2715230368065687150}
   m_Layer: 0
   m_Name: Area Light
-  m_TagString: Untagged
+  m_TagString: Light
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -701,7 +701,7 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6758205706133517254}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
@@ -1447,6 +1447,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Fire_ParticleSystem_Prefab
+      objectReference: {fileID: 0}
+    - target: {fileID: 2941421515002903164, guid: c7d67230f1fbbde4c86797e9b55749e3,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6149799430551939450, guid: c7d67230f1fbbde4c86797e9b55749e3,
         type: 3}
@@ -5542,10 +5547,20 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4981992549428780402, guid: a970d6cf422a41e4ead7d263ba364e3e,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5365002211020263270, guid: a970d6cf422a41e4ead7d263ba364e3e,
         type: 3}
       propertyPath: m_Name
       value: Lamp_Tall (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 7378380442020901391, guid: a970d6cf422a41e4ead7d263ba364e3e,
+        type: 3}
+      propertyPath: m_TagString
+      value: Light
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
