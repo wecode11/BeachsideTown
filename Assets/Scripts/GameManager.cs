@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public GameObject[] nightSounds;
     public GameObject backgroundMusic;
     public GameObject musicSlider;
+    public GameObject[] lightObjects;
 
     void Start()
     {
@@ -101,7 +102,6 @@ public class GameManager : MonoBehaviour
         GameObject sun = GameObject.FindGameObjectWithTag("Sun");
         sun.GetComponent<Light>().enabled = !enabled;
 
-
         GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
 
         for (int lightIdx = 0; lightIdx < lights.Length; lightIdx++)
@@ -120,6 +120,12 @@ public class GameManager : MonoBehaviour
                 lightMaterial[matIdx].DisableKeyword("_EMISSION");
             }
         }
+
+        for (int litIdx = 0; litIdx < lightObjects.Length; litIdx++)
+        {
+            RendererExtensions.UpdateGIMaterials(lightObjects[litIdx].GetComponent<Renderer>());
+        }
+
 
         DynamicGI.UpdateEnvironment();
     }

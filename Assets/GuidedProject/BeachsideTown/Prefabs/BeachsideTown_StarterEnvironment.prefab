@@ -2096,6 +2096,11 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2941421515002903164, guid: c7d67230f1fbbde4c86797e9b55749e3,
+        type: 3}
+      propertyPath: m_TagString
+      value: FireVFX
+      objectReference: {fileID: 0}
     - target: {fileID: 6149799430551939450, guid: c7d67230f1fbbde4c86797e9b55749e3,
         type: 3}
       propertyPath: prewarm
@@ -5434,7 +5439,7 @@ PrefabInstance:
     - target: {fileID: 8037931018371619030, guid: e39c4f4cc1467de429a8299f23f3f03a,
         type: 3}
       propertyPath: m_Materials.Array.size
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 8037931018371619030, guid: e39c4f4cc1467de429a8299f23f3f03a,
         type: 3}
