@@ -2,9 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using TMPro;
 
 public class GameManager : MonoBehaviour
 {
+    public TMP_Text timeOfDayLabel;
     public Slider cameraSlider;
     public Camera[] cameras;
     public Material daySkybox;
@@ -25,12 +27,10 @@ public class GameManager : MonoBehaviour
         SetDay();
     }
 
-    public void Play()
-    {
-    }
-
     public void SetDay()
     {
+        timeOfDayLabel.text = "Day";
+
         RenderSettings.skybox = daySkybox;
 
         SetLights(false);
@@ -45,6 +45,8 @@ public class GameManager : MonoBehaviour
 
     public void SetNight()
     {
+        timeOfDayLabel.text = "Night";
+
         RenderSettings.skybox = nightSkybox;
 
         SetLights(true);
