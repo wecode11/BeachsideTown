@@ -5,7 +5,22 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/BeachsideTown.unity
     guid: f40ed5f3aba2b5a4c91a1f2dc628a7c8
-  m_configObjects: {}
+  - enabled: 1
+    path: Assets/Scenes/BeachsideTownAR.unity
+    guid: 55ca3e4b38648d448936a6c50f372602
+  m_configObjects:
+    UnityEditor.XR.ARCore.ARCoreSettings: {fileID: 11400000, guid: d7c9fd11f0500114bab95bb56bc1b282,
+      type: 2}
+    UnityEditor.XR.ARKit.ARKitSettings: {fileID: 11400000, guid: 454474bbf72e52f4d8cd1fdb46ba2ae1,
+      type: 2}
+    com.unity.xr.arfoundation.simulation_settings: {fileID: 11400000, guid: 7e3d9e374a84d324aabef1bb2fe4cb78,
+      type: 2}
+    com.unity.xr.magicleap.magic_leap_settings: {fileID: 11400000, guid: 9fa1f2e4213827447b619db2eba64a1d,
+      type: 2}
+    com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 24d14fef8916d6643bb7ce2799874724,
+      type: 2}
+    com.unity.xr.openxr.settings4: {fileID: 11400000, guid: 691791f326360e04397c9a314ce46256,
+      type: 2}
