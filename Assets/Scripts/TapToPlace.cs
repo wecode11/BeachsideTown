@@ -1,52 +1,74 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using TMPro;
 using UnityEngine.XR.ARFoundation;
 using UnityEngine.XR.ARSubsystems;
+using TMPro;
 
 public class TapToPlace : MonoBehaviour
 {
+    public GameObject spawnObject;
     public TMP_Text debugText;
-
     public ARRaycastManager raycastManager;
-
     public ARPlaneManager planeManager;
-
     private bool spawned = false;
+    private Pose location;
 
     void Update()
     {
-        if (!spawned)
+        if (!spawned && HaveSpawnLocation())
         {
-            GetSpawnLocation();
+            PutObject(location.position, location.rotation);
+            DisablePlaneDetection();
+            DisplayDebugText("Placed");
         }
     }
 
-
-    void GetSpawnLocation()
+    private bool HaveSpawnLocation()
     {
-        if (Input.touchCount > 0)
+        if (Input.touchCount == 0)
         {
-            Touch touch = Input.GetTouch(0);
+            return false;
+        }
 
-            var hits = new List<ARRaycastHit>();
-            raycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon);
+        Touch touch = Input.GetTouch(0);
 
-            if (hits.Count > 0)
-            {
-                if (debugText != null)
-                {
-                    debugText.text = "Plane";
-                }
-            }
-            else
-            {
-                if (debugText != null)
-                {
-                    debugText.text = "Other";
-                }
-            }
+        if (touch.phase == TouchPhase.Began)
+        {
+            DisplayDebugText("Not began");
+            return false;
+        }
+
+        var hits = new List<ARRaycastHit>();
+        raycastManager.Raycast(touch.position, hits, TrackableType.PlaneWithinPolygon);
+
+        if (hits.Count == 0)
+        {
+            DisplayDebugText("No plane found");
+            return false;
+        }
+
+        location = hits[0].pose;
+        return true;
+    }
+
+    private void PutObject(Vector3 position, Quaternion rotation)
+    {
+        Instantiate(spawnObject, position, rotation);
+    }
+
+    private void DisablePlaneDetection()
+    {
+        spawned = true;
+        planeManager.SetTrackablesActive(false);
+        planeManager.enabled = false;
+    }
+
+    private void DisplayDebugText(string s)
+    {
+        if (debugText != null)
+        {
+            debugText.text = s;
         }
     }
 }
