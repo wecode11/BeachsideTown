@@ -21,23 +21,23 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        float volume = backgroundMusic.GetComponent<AudioSource>().volume;
-        musicSlider.GetComponent<Slider>().value = volume;
-
+        SetMusic();
         SetDay();
     }
 
     public void SetDay()
     {
         timeOfDayLabel.text = "Day";
-
         RenderSettings.skybox = daySkybox;
 
         SetLights(false);
 
         GameObject fire = GameObject.FindGameObjectWithTag("FireVFX");
-        fire.GetComponent<ParticleSystem>().Stop();
-        fire.GetComponent<ParticleSystem>().Clear();
+        if (fire != null)
+        {
+            fire.GetComponent<ParticleSystem>().Stop();
+            fire.GetComponent<ParticleSystem>().Clear();
+        }
 
         SetSounds(nightSounds, false);
         SetSounds(daySounds, true);
@@ -46,13 +46,15 @@ public class GameManager : MonoBehaviour
     public void SetNight()
     {
         timeOfDayLabel.text = "Night";
-
         RenderSettings.skybox = nightSkybox;
 
         SetLights(true);
 
         GameObject fire = GameObject.FindGameObjectWithTag("FireVFX");
-        fire.GetComponent<ParticleSystem>().Play();
+        if (fire != null)
+        {
+            fire.GetComponent<ParticleSystem>().Play();
+        }
 
         SetSounds(daySounds, false);
         SetSounds(nightSounds, true);
@@ -83,6 +85,15 @@ public class GameManager : MonoBehaviour
 #else
         Application.Quit();
 #endif
+    }
+
+    private void SetMusic()
+    {
+        if ((backgroundMusic != null) && (musicSlider != null))
+        {
+            float volume = backgroundMusic.GetComponent<AudioSource>().volume;
+            musicSlider.GetComponent<Slider>().value = volume;
+        }
     }
 
     private void SetSounds(GameObject[] sounds, bool enable)
