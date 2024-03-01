@@ -7,6 +7,11 @@ TagManager:
   - Light
   - Sun
   - FireVFX
+  - Character
+  - TimeOfDay
+  - UpdateMaterial
+  - SoundDay
+  - SoundNight
   layers:
   - Default
   - TransparentFX

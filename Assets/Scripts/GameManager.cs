@@ -6,29 +6,29 @@ using TMPro;
 
 public class GameManager : MonoBehaviour
 {
-    public TMP_Text timeOfDayLabel;
+    public GameObject backgroundMusic;
+    public GameObject musicSlider;
     public Slider cameraSlider;
     public Camera[] cameras;
     public Material daySkybox;
     public Material nightSkybox;
     public Material[] lightMaterial;
-    public GameObject[] daySounds;
-    public GameObject[] nightSounds;
-    public GameObject backgroundMusic;
-    public GameObject musicSlider;
-    public GameObject[] lightObjects;
-    public GameObject[] characters;
 
     void Start()
     {
-        SetMusic();
         SetDay();
+        SetMusic();
     }
 
     public void SetDay()
     {
-        timeOfDayLabel.text = "Day";
         RenderSettings.skybox = daySkybox;
+
+        GameObject timeOfDay = GameObject.FindGameObjectWithTag("TimeOfDay");
+        if (timeOfDay != null)
+        {
+            timeOfDay.GetComponent<TMP_Text>().text = "Day";
+        }
 
         SetLights(false);
 
@@ -39,14 +39,19 @@ public class GameManager : MonoBehaviour
             fire.GetComponent<ParticleSystem>().Clear();
         }
 
-        SetSounds(nightSounds, false);
-        SetSounds(daySounds, true);
+        SetSounds("SoundNight", false);
+        SetSounds("SoundDay", true);
     }
 
     public void SetNight()
     {
-        timeOfDayLabel.text = "Night";
         RenderSettings.skybox = nightSkybox;
+
+        GameObject timeOfDay = GameObject.FindGameObjectWithTag("TimeOfDay");
+        if (timeOfDay != null)
+        {
+            timeOfDay.GetComponent<TMP_Text>().text = "Night";
+        }
 
         SetLights(true);
 
@@ -56,8 +61,8 @@ public class GameManager : MonoBehaviour
             fire.GetComponent<ParticleSystem>().Play();
         }
 
-        SetSounds(daySounds, false);
-        SetSounds(nightSounds, true);
+        SetSounds("SoundDay", false);
+        SetSounds("SoundNight", true);
     }
 
     public void SelectCamera()
@@ -69,7 +74,6 @@ public class GameManager : MonoBehaviour
         }
 
         int camVal = (int)cameraSlider.value;
-
         if (camVal < cameras.Length)
         {
             cameras[camVal].enabled = true;
@@ -96,8 +100,9 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    private void SetSounds(GameObject[] sounds, bool enable)
+    private void SetSounds(string tag, bool enable)
     {
+        GameObject[] sounds = GameObject.FindGameObjectsWithTag(tag);
         for (int sndIdx = 0; sndIdx < sounds.Length; sndIdx++)
         {
             if (enable)
@@ -117,7 +122,6 @@ public class GameManager : MonoBehaviour
         sun.GetComponent<Light>().enabled = !enabled;
 
         GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
-
         for (int lightIdx = 0; lightIdx < lights.Length; lightIdx++)
         {
             lights[lightIdx].GetComponent<Light>().enabled = enabled;
@@ -135,11 +139,13 @@ public class GameManager : MonoBehaviour
             }
         }
 
+        GameObject[] lightObjects = GameObject.FindGameObjectsWithTag("UpdateMaterial");
         for (int litIdx = 0; litIdx < lightObjects.Length; litIdx++)
         {
             RendererExtensions.UpdateGIMaterials(lightObjects[litIdx].GetComponent<Renderer>());
         }
 
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
         for (int chrIdx = 0; chrIdx < characters.Length; chrIdx++)
         {
             characters[chrIdx].GetComponent<Animator>().SetBool("isDay", !enabled);

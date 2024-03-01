@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4688387744348800379}
   m_Layer: 5
   m_Name: Time of day
-  m_TagString: Untagged
+  m_TagString: TimeOfDay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -265,7 +265,7 @@ GameObject:
   - component: {fileID: 5814142469732385210}
   m_Layer: 0
   m_Name: Pub Audio Source
-  m_TagString: Untagged
+  m_TagString: SoundNight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -393,7 +393,7 @@ GameObject:
   - component: {fileID: 5527200587812749358}
   m_Layer: 0
   m_Name: Fire Audio Source
-  m_TagString: Untagged
+  m_TagString: SoundNight
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1412,7 +1412,7 @@ GameObject:
   - component: {fileID: 857952760615763402}
   m_Layer: 0
   m_Name: Seagull Audio Source
-  m_TagString: Untagged
+  m_TagString: SoundDay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2111,7 +2111,7 @@ GameObject:
   - component: {fileID: 1712645635515059874}
   m_Layer: 0
   m_Name: Street Audio Source
-  m_TagString: Untagged
+  m_TagString: SoundDay
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -3338,6 +3338,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5365002211020263270, guid: a970d6cf422a41e4ead7d263ba364e3e,
         type: 3}
+      propertyPath: m_TagString
+      value: UpdateMaterial
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365002211020263270, guid: a970d6cf422a41e4ead7d263ba364e3e,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -3715,7 +3720,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 813c6375c5ad1f540b9b1eed2013893d,
         type: 3}
       propertyPath: m_StaticEditorFlags
-      value: 2147483647
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3940,6 +3945,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lamp_Tall (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365002211020263270, guid: a970d6cf422a41e4ead7d263ba364e3e,
+        type: 3}
+      propertyPath: m_TagString
+      value: UpdateMaterial
       objectReference: {fileID: 0}
     - target: {fileID: 5365002211020263270, guid: a970d6cf422a41e4ead7d263ba364e3e,
         type: 3}
@@ -4799,6 +4809,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kim
       objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: f5df2a110c0f4b94887f1bb4dd42edcd,
+        type: 3}
+      propertyPath: m_TagString
+      value: Character
+      objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: f5df2a110c0f4b94887f1bb4dd42edcd,
         type: 3}
       propertyPath: m_Controller
@@ -5637,6 +5652,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 913193675836102104, guid: e39c4f4cc1467de429a8299f23f3f03a,
         type: 3}
+      propertyPath: m_TagString
+      value: UpdateMaterial
+      objectReference: {fileID: 0}
+    - target: {fileID: 913193675836102104, guid: e39c4f4cc1467de429a8299f23f3f03a,
+        type: 3}
       propertyPath: m_StaticEditorFlags
       value: 4294967295
       objectReference: {fileID: 0}
@@ -6464,20 +6484,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4981992549428780402, guid: a970d6cf422a41e4ead7d263ba364e3e,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 5365002211020263270, guid: a970d6cf422a41e4ead7d263ba364e3e,
         type: 3}
       propertyPath: m_Name
       value: Lamp_Tall (3)
       objectReference: {fileID: 0}
-    - target: {fileID: 7378380442020901391, guid: a970d6cf422a41e4ead7d263ba364e3e,
+    - target: {fileID: 5365002211020263270, guid: a970d6cf422a41e4ead7d263ba364e3e,
         type: 3}
       propertyPath: m_TagString
-      value: Light
+      value: UpdateMaterial
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -7645,6 +7660,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Nina
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 194aeeafa79260c4b94e75c82e8891a6,
+        type: 3}
+      propertyPath: m_TagString
+      value: Character
       objectReference: {fileID: 0}
     - target: {fileID: 5866666021909216657, guid: 194aeeafa79260c4b94e75c82e8891a6,
         type: 3}
@@ -8989,6 +9009,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Lamp_Tall (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 5365002211020263270, guid: a970d6cf422a41e4ead7d263ba364e3e,
+        type: 3}
+      propertyPath: m_TagString
+      value: UpdateMaterial
       objectReference: {fileID: 0}
     - target: {fileID: 5365002211020263270, guid: a970d6cf422a41e4ead7d263ba364e3e,
         type: 3}

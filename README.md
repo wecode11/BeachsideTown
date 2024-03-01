@@ -2,6 +2,10 @@
 
 Beachside Town is part of a submisstion to the Unity learn guided project challange within the Creative Core pathway.
 
+## Play online
+
+Beachside Town can be played online at https://play.unity.com/mg/other/beachsidetown-5
+
 ## External resources
 * Unity Guided Project <https://learn.unity.com/tutorial/get-started-on-your-guided-project?pathwayId=61a65568edbc2a00206076dd&missionId=61a64fafedbc2a0021b4614d#>
 * Idle MoCap <https://assetstore.unity.com/packages/3d/animations/idle-mocap-28345>

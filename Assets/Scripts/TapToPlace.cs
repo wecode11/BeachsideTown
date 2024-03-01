@@ -11,6 +11,7 @@ public class TapToPlace : MonoBehaviour
     public TMP_Text debugText;
     public ARRaycastManager raycastManager;
     public ARPlaneManager planeManager;
+    public GameObject[] activate;
     private bool spawned = false;
     private Pose location;
 
@@ -20,7 +21,16 @@ public class TapToPlace : MonoBehaviour
         {
             PutObject(location.position, location.rotation);
             DisablePlaneDetection();
+            ActivateObjects();
             DisplayDebugText("Placed");
+        }
+    }
+
+    private void ActivateObjects()
+    {
+        for (int objIdx = 0; objIdx < activate.Length; objIdx++)
+        {
+            activate[objIdx].SetActive(true);
         }
     }
 
