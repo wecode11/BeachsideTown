@@ -119,7 +119,15 @@ public class GameManager : MonoBehaviour
     private void SetLights(bool enabled)
     {
         GameObject sun = GameObject.FindGameObjectWithTag("Sun");
-        sun.GetComponent<Light>().enabled = !enabled;
+
+        if (enabled)
+        {
+            sun.GetComponent<Light>().intensity = 0.1f;
+        }
+        else
+        {
+            sun.GetComponent<Light>().intensity = 2.8f;
+        }
 
         GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
         for (int lightIdx = 0; lightIdx < lights.Length; lightIdx++)

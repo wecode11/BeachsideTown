@@ -2419,6 +2419,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8285307610000033913, guid: c7d67230f1fbbde4c86797e9b55749e3,
+        type: 3}
+      propertyPath: m_TagString
+      value: FireVFX
+      objectReference: {fileID: 0}
     - target: {fileID: 8858616512689077102, guid: c7d67230f1fbbde4c86797e9b55749e3,
         type: 3}
       propertyPath: m_LocalScale.x

@@ -64,7 +64,9 @@ public class TapToPlace : MonoBehaviour
 
     private void PutObject(Vector3 position, Quaternion rotation)
     {
-        Instantiate(spawnObject, position, rotation);
+        spawnObject.transform.position = position;
+        spawnObject.transform.rotation = rotation;
+        spawnObject.SetActive(true);
     }
 
     private void DisablePlaneDetection()
