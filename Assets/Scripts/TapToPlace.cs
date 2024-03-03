@@ -8,12 +8,13 @@ using TMPro;
 public class TapToPlace : MonoBehaviour
 {
     public GameObject spawnObject;
-    public TMP_Text debugText;
+    public TMP_Text infoText;
     public ARRaycastManager raycastManager;
     public ARPlaneManager planeManager;
     public GameObject[] activate;
     private bool spawned = false;
     private Pose location;
+    private bool debug = false;
 
     void Update()
     {
@@ -22,6 +23,10 @@ public class TapToPlace : MonoBehaviour
             PutObject(location.position, location.rotation);
             DisablePlaneDetection();
             ActivateObjects();
+        }
+
+        if (spawnObject.activeSelf)
+        {
             DisplayDebugText("Placed");
         }
     }
@@ -78,9 +83,13 @@ public class TapToPlace : MonoBehaviour
 
     private void DisplayDebugText(string s)
     {
-        if (debugText != null)
+        if (!debug)
         {
-            debugText.text = s;
+            infoText.text = "";
+        }
+        else if (infoText != null)
+        {
+            infoText.text = s;
         }
     }
 }

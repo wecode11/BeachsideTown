@@ -32,11 +32,11 @@ public class GameManager : MonoBehaviour
 
         SetLights(false);
 
-        GameObject fire = GameObject.FindGameObjectWithTag("FireVFX");
-        if (fire != null)
+        GameObject[] vfx = GameObject.FindGameObjectsWithTag("FireVFX");
+        for (int vfxIdx = 0; vfxIdx < vfx.Length; vfxIdx++)
         {
-            fire.GetComponent<ParticleSystem>().Stop();
-            fire.GetComponent<ParticleSystem>().Clear();
+            vfx[vfxIdx].GetComponent<ParticleSystem>().Stop();
+            vfx[vfxIdx].GetComponent<ParticleSystem>().Clear();
         }
 
         SetSounds("SoundNight", false);
@@ -55,10 +55,10 @@ public class GameManager : MonoBehaviour
 
         SetLights(true);
 
-        GameObject fire = GameObject.FindGameObjectWithTag("FireVFX");
-        if (fire != null)
+        GameObject[] vfx = GameObject.FindGameObjectsWithTag("FireVFX");
+        for (int vfxIdx = 0; vfxIdx < vfx.Length; vfxIdx++)
         {
-            fire.GetComponent<ParticleSystem>().Play();
+            vfx[vfxIdx].GetComponent<ParticleSystem>().Play();
         }
 
         SetSounds("SoundDay", false);
@@ -129,6 +129,12 @@ public class GameManager : MonoBehaviour
             sun.GetComponent<Light>().intensity = 2.8f;
         }
 
+        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
+        for (int chrIdx = 0; chrIdx < characters.Length; chrIdx++)
+        {
+            characters[chrIdx].GetComponent<Animator>().SetBool("isDay", !enabled);
+        }
+
         GameObject[] lights = GameObject.FindGameObjectsWithTag("Light");
         for (int lightIdx = 0; lightIdx < lights.Length; lightIdx++)
         {
@@ -137,26 +143,24 @@ public class GameManager : MonoBehaviour
 
         for (int matIdx = 0; matIdx < lightMaterial.Length; matIdx++)
         {
+            Material material = lightMaterial[matIdx];
+
             if (enabled)
             {
-                lightMaterial[matIdx].EnableKeyword("_EMISSION");
+                material.EnableKeyword("_EMISSION");
             }
             else
             {
-                lightMaterial[matIdx].DisableKeyword("_EMISSION");
+                material.DisableKeyword("_EMISSION");
             }
+
+            material.globalIlluminationFlags = MaterialGlobalIlluminationFlags.RealtimeEmissive;
         }
 
         GameObject[] lightObjects = GameObject.FindGameObjectsWithTag("UpdateMaterial");
         for (int litIdx = 0; litIdx < lightObjects.Length; litIdx++)
         {
             RendererExtensions.UpdateGIMaterials(lightObjects[litIdx].GetComponent<Renderer>());
-        }
-
-        GameObject[] characters = GameObject.FindGameObjectsWithTag("Character");
-        for (int chrIdx = 0; chrIdx < characters.Length; chrIdx++)
-        {
-            characters[chrIdx].GetComponent<Animator>().SetBool("isDay", !enabled);
         }
 
         DynamicGI.UpdateEnvironment();
